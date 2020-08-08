@@ -15,6 +15,7 @@ def normalize_data(matrix, axis=None):
         axis: if None, normalize the whole matrix
               if zero, normalize columns respectively
     '''
+    matrix = np.array(matrix)
     maxnum = np.max(matrix, axis)
     minnum = np.min(matrix, axis)
     return (matrix - minnum) / (maxnum - minnum)
@@ -107,28 +108,28 @@ open train features
 print('load data')
 
 # labels
-file = pd.read_csv("labels.csv")
-data = file.iloc[:,[0]].values
-# laplace (10 columns)
-file = pd.read_csv('lap.csv')
-lap_feat = file.iloc[:,1:11].values
-bit_feat = file.iloc[:, [11]].values
-ssim_feat = file.iloc[:, [12]].values
-# bitrate (1 column)
-file = pd.read_csv("bitrate.csv")
-bit_feat = file.iloc[:,:].values
-# ssim (1 column)
-file = pd.read_csv("ssim.csv")
-ssim_feat = file.iloc[:,:].values
-# optical flow (10 columns or 1 column)
-file = pd.read_csv('optical_flow.csv')
-of_feat = file.iloc[:,12:22].values
+# file = pd.read_csv("labels.csv")
+# data = file.iloc[:,[0]].values
+# # laplace (10 columns)
+# file = pd.read_csv('lap.csv')
+# lap_feat = file.iloc[:,1:11].values
+# bit_feat = file.iloc[:, [11]].values
+# ssim_feat = file.iloc[:, [12]].values
+# # bitrate (1 column)
+# file = pd.read_csv("bitrate.csv")
+# bit_feat = file.iloc[:,:].values
+# # ssim (1 column)
+# file = pd.read_csv("ssim.csv")
+# ssim_feat = file.iloc[:,:].values
+# # optical flow (10 columns or 1 column)
+# file = pd.read_csv('optical_flow.csv')
+# of_feat = file.iloc[:,12:22].values
 # Sobel space (1 column)
 file = pd.read_csv('sobel_space.csv')
-sp_feat = file.iloc[:,[14]].values
+sp_feat = file.iloc[:, [1]].values
 # Sobel time (6 columns)
 file = pd.read_csv('sobel_time.csv')
-st_feat = file.iloc[:,1:7].values
+st_feat = file.iloc[:, 1:7].values
 
 
 '''
@@ -136,35 +137,36 @@ collect features
 '''
 print('load clips')
 
-path = '/clips'
+path = './clips/'
 listfiles = os.listdir(path)
 for file in listfiles:
     if file.endswith(".mp4"):
         clipname = file.split(".")[0]
         sp_feat = np.vstack((sp_feat, sobel_space(path + file, clipname)))
         st_feat = np.vstack((st_feat, sobel_time (path + file, clipname)))
-print(sp_feat)
 
 
 '''
 normalize data
 '''
-# laplace
-lap_nrom = normalize_data(lap_feat, 0)
-# bitrate and ssim
-bit_norm = normalize_data(bit_feat)
-ssim_norm = normalize_data(ssim_feat)
-# optical flow
-of_norm = normalize_data(of_feat)
+# # laplace
+# lap_nrom = normalize_data(lap_feat, 0)
+# # bitrate and ssim
+# bit_norm = normalize_data(bit_feat)
+# ssim_norm = normalize_data(ssim_feat)
+# # optical flow
+# of_norm = normalize_data(of_feat)
 # sobel
 sp_norm = normalize_data(sp_feat)
 st_norm = normalize_data(st_feat)
+print(sp_norm)
+print(st_norm)
 
 # concatenate data
-data = np.hstack((data, lap_norm))
-data = np.hstack((data, bit_norm))
-data = np.hstack((data, ssim_norm))
-data = np.hstack((data, of_norm))
+# data = np.hstack((data, lap_norm))
+# data = np.hstack((data, bit_norm))
+# data = np.hstack((data, ssim_norm))
+# data = np.hstack((data, of_norm))
 data = np.hstack((data, sp_norm))
 data = np.hstack((data, st_norm))
 
