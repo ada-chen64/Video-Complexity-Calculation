@@ -108,8 +108,8 @@ open train features
 print('load data')
 
 # labels
-# file = pd.read_csv("labels.csv")
-# data = file.iloc[:,[0]].values
+file = pd.read_csv("labels.csv")
+data = file.iloc[:,[0]].values
 # # laplace (10 columns)
 # file = pd.read_csv('lap.csv')
 # lap_feat = file.iloc[:,1:11].values
@@ -159,8 +159,6 @@ normalize data
 # sobel
 sp_norm = normalize_data(sp_feat)
 st_norm = normalize_data(st_feat)
-print(sp_norm)
-print(st_norm)
 
 # concatenate data
 # data = np.hstack((data, lap_norm))
