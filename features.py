@@ -124,10 +124,10 @@ ssim_feat = file.iloc[:,:].values
 file = pd.read_csv('optical_flow.csv')
 of_feat = file.iloc[:,12:22].values
 # Sobel space (1 column)
-file = pd.read_csv('Sobel_SI2.csv')
+file = pd.read_csv('sobel_space.csv')
 sp_feat = file.iloc[:,[14]].values
 # Sobel time (6 columns)
-file = pd.read_csv('Sobel_time.csv')
+file = pd.read_csv('sobel_time.csv')
 st_feat = file.iloc[:,1:7].values
 
 
