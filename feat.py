@@ -111,6 +111,7 @@ def sobel_time(path):
             SI_total += SI_mean
             
         feat.append(SI_total / 4)
+    feat = feat.sort(reverse = True)
     return feat   
 
 
