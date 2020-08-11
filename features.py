@@ -1,4 +1,4 @@
-import os
+import os, time
 import cv2
 import numpy as np
 import pandas as pd
@@ -165,6 +165,54 @@ class Flow:
             else:
                 return out
 
+def lap(vidpath):
+    cap = cv2.VideoCapture(vidpath)
+    res1 = []
+    res2 = []
+    while True:
+        ret, frame = cap.read()
+        if not ret: break
+
+        lapf = cv2.Laplacian(frame, -1) + cv2.Laplacian(-frame, -1)
+        lapf = lapf.astype(np.float32)
+        lapf = lapf * lapf
+        res1.append(float(lapf.mean()**.5))
+
+        frame = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+        lapf = cv2.Laplacian(frame, -1) + cv2.Laplacian(-frame, -1)
+        lapf = lapf.astype(np.float32)
+        res2.append(float(lapf.std()))
+
+    res1 = pd.Series(res1)
+    res2 = pd.Series(res2)
+    return res1.mean(), res1.std(ddof=0), res1.max(), res1.median(), res1.min(), \
+           res2.mean(), res2.std(ddof=0), res2.max(), res2.median(), res2.min()
+
+def bitrate_ssim(vidpath, clipname):
+    src = vidpath
+    tar = os.path.join("out", clipname+"360p.mp4")
+    out = os.path.join("tmp", clipname+"out.txt")
+    cmd = 'ffmpeg -i %s-vf scale=640x360 -an -c:v libx265 -tune ssim -tag:v hvc1 \
+            -colorspace bt709 -color_primaries bt709 -pix_fmt yuv420p -aspect 16:9 -vsync 0 \
+            -x265-params ssim=1:keyint=50:min-keyint=50:vbv-bufsize=%d:vbv-maxrate=%d:scenecut=0:scenecut-bias=0:open-gop=0 \
+            -crf 26 -y %s 2> %s' % (src, 2200, 1650, tar, out)
+    os.system(cmd)
+
+    while True:
+        if os.path.exists(tar): break
+        time.sleep(1)
+
+    br = re.compile(" ([0-9\.]*?) kb/s")
+    ssim = re.compile("SSIM Mean Y: (.*?) ")
+    with open(out, "r") as f:
+        res = [line for line in f if line.strip() != ''][-1]
+    a = br.search(res)
+    b = ssim.search(res)
+    bitrate = float(a.group(1))
+    ssimv = float(b.group(1))
+
+    return bitrate, ssimv
+
 '''
 open train features
 '''
@@ -173,11 +221,11 @@ print('load data')
 # labels
 file = pd.read_csv("labels.csv")
 data = file.iloc[:,[0]].values
-# # laplace (10 columns)
-# file = pd.read_csv('lap.csv')
-# lap_feat = file.iloc[:,1:11].values
-# bit_feat = file.iloc[:, [11]].values
-# ssim_feat = file.iloc[:, [12]].values
+# laplace (10 columns)
+file = pd.read_csv('lap.csv')
+lap_feat = file.iloc[:,1:11].values
+bit_feat = file.iloc[:, [11]].values
+ssim_feat = file.iloc[:, [12]].values
 # # bitrate (1 column)
 # file = pd.read_csv("bitrate.csv")
 # bit_feat = file.iloc[:,:].values
