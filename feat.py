@@ -35,9 +35,28 @@ def extract_features(clips):
 
         data.append(lap_space(clip_path) + bitrate_ssim(info_path) + optical_flow(clip_path)
                     + sobel_space(clip_path) + sobel_time(clip_path))
-    
+        break
     return np.array(data)
 
+def extract_feature(clip):
+    '''
+    collect features from all test clips
+
+    Param:
+        clips: clips' names, eg. 'clips_1.mp4'
+    Return:
+        data: [[lap 0-9], [bitrate 10], [ssim 11], [optical 12], [sobel space 13], [sobel time 14-19]]
+    '''
+
+    data = []
+    
+    clip_path = '360p/clips/' + clip
+    info_path = '360p/output/' + ''.join(clip.split('.')[:-1]) + '.txt'
+
+    data.append(lap_space(clip_path) + bitrate_ssim(info_path) + optical_flow(clip_path)
+                + sobel_space(clip_path) + sobel_time(clip_path))
+        
+    return data
 
 def sobel_space(path):
     cap = cv2.VideoCapture(path)
