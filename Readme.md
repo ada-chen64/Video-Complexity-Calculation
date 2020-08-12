@@ -13,6 +13,14 @@
 * sklearn
 * pytorch
 
+注意配置环境的时候有以下两点问题：
+* 安装时 pip3 install opencv-python 若安装失败提示缺少skbuild模块，需要先通过 pip3 install cmake
+* 安装 cv2 以后，若cv2.VideoCapture()视频读取失败，其实还需要再安装 pip3 install opencv-contrib-python 才能成功读取视频
+
+```shell
+安装过慢时
+pip3 install opencv-python -i https://pypi.tuna.tsinghua.edu.cn/simple
+```
 
 
 ## 运行
