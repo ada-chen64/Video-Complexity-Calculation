@@ -144,7 +144,7 @@ def optical_flow(path):
     cap = cv2.VideoCapture(path)
     frames = cap.get(7)
     frame_idx = 0
-    detect_interval = int(frames / 6)
+    detect_interval = int(frames / 10)
 
     out = []
     flag = 0
@@ -154,7 +154,7 @@ def optical_flow(path):
             frame_gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
             vis = frame.copy()
     
-            if len(tracks) > 0 and flag < 5:
+            if len(tracks) > 0 and flag < 3:
                 img0, img1 = prev_gray, frame_gray
                 p0 = np.float32([tr[-1] for tr in tracks]).reshape(-1, 1, 2)
                 p1, st, err = cv2.calcOpticalFlowPyrLK(img0, img1, p0, None, **lk_params)
@@ -190,7 +190,8 @@ def optical_flow(path):
             prev_gray = frame_gray
             
         else:
-            return [np.mean(out[10:20])]
+            start = int((len(out) - 10) / 2)
+            return [np.mean(out[start:start + 10])]
 
 
 def bitrate_ssim(path):
