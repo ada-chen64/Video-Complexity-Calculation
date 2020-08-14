@@ -28,7 +28,7 @@ pip3 install opencv-python -i https://pypi.tuna.tsinghua.edu.cn/simple
 将需要检测复杂度的场景clip.mp4放入clips文件夹中，并在clips.txt内添加文件名即可。
 
 ```shell
-python main.py
+python main.py > output.txt
 ```
 
 
