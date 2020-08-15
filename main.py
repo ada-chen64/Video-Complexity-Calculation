@@ -7,7 +7,7 @@ from pred import predict_complexity
 
 
 # step0: get clips' path and load training data
-file = './input.txt'
+file = '../input.txt'
 clips = np.loadtxt(file, dtype=np.str, delimiter=',')
 norm = np.load('data/norm.npy')
 

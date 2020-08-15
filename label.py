@@ -1,8 +1,9 @@
 import os
+import re
 import numpy as np
 
 
-file = './input.txt'
+file = '../input.txt'
 clips = np.loadtxt(file, dtype=np.str, delimiter=',')
 bitrates = [125, 250, 500, 750, 1000, 1500, 2000, 3000, 4000, 5000]
 
