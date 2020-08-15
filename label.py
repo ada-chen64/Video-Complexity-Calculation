@@ -22,8 +22,8 @@ for clip in clips:
     ssims = []
     for bitrate in bitrates:
         src = clip
-        tar = 'labels/clips/' + base + '_' + bitrate + '.mp4'
-        out = 'labels/output/' + base + '_' + bitrate +  '.txt' 
+        tar = 'labels/clips/%s_%d.mp4' % (base, bitrate)
+        out = 'labels/clips/%s_%d.txt' % (base, bitrate)
         if os.path.exists(tar):
             continue
         bufsize = 2 * bitrate
