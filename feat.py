@@ -178,7 +178,8 @@ def bitrate_ssim(path):
     p2 = re.compile("SSIM Mean Y: (.*?) ")
 
     file = open(path, mode='r')
-    text = file.readlines()[-1]
+    texts = file.readlines()
+    text = texts[-2] + texts[-1] # avoid result in last two lines
     bitrate = float(p1.search(text).group(1))
     ssim = float(p2.search(text).group(1))
     file.close()
