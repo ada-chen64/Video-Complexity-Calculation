@@ -20,11 +20,10 @@ for clip in clips:
     base = cut_clip(clip)
 
     # step2: extract features
-    data = extract_feature(base)
-    np.savetxt('data/test_data.txt', data, fmt='%.6f')
+    feats = extract_feature(base)
 
     # step3: normalize data
-    data = normalize_data(data, norm)
+    data = normalize_data(feats, norm)
 
     # step4: calculate complexity
     pred = predict_complexity(data)
@@ -37,4 +36,7 @@ for clip in clips:
     bitrate, ssim = bitrate_ssim('720p/output/' + base + '.txt')
 
     # step6: output
-    print('%s, %d, %.4fs, %.2fkb/s, %.6f' % (clip, pred.item(), t, bitrate, ssim))
+    print('%s, %d, %.4fs, %.2fkb/s, %.6f' % (clip, pred.item(), t, bitrate, ssim), end=', ')
+    for f in feats[0]:
+        print('%.6f' % f, end=', ')
+    print()
