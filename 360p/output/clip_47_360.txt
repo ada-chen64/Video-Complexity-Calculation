@@ -1,67 +1,0 @@
-ffmpeg version git-2020-06-28-4cfcfb3 Copyright (c) 2000-2020 the FFmpeg developers
-  built with gcc 9.3.1 (GCC) 20200621
-  configuration: --enable-gpl --enable-version3 --enable-sdl2 --enable-fontconfig --enable-gnutls --enable-iconv --enable-libass --enable-libdav1d --enable-libbluray --enable-libfreetype --enable-libmp3lame --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libopenjpeg --enable-libopus --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libsrt --enable-libtheora --enable-libtwolame --enable-libvpx --enable-libwavpack --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxml2 --enable-libzimg --enable-lzma --enable-zlib --enable-gmp --enable-libvidstab --enable-libvmaf --enable-libvorbis --enable-libvo-amrwbenc --enable-libmysofa --enable-libspeex --enable-libxvid --enable-libaom --enable-libgsm --disable-w32threads --enable-libmfx --enable-ffnvcodec --enable-cuda-llvm --enable-cuvid --enable-d3d11va --enable-nvenc --enable-nvdec --enable-dxva2 --enable-avisynth --enable-libopenmpt --enable-amf
-  libavutil      56. 55.100 / 56. 55.100
-  libavcodec     58. 93.100 / 58. 93.100
-  libavformat    58. 47.100 / 58. 47.100
-  libavdevice    58. 11.100 / 58. 11.100
-  libavfilter     7. 86.100 /  7. 86.100
-  libswscale      5.  8.100 /  5.  8.100
-  libswresample   3.  8.100 /  3.  8.100
-  libpostproc    55.  8.100 / 55.  8.100
-Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'nature_1080.mp4':
-  Metadata:
-    major_brand     : dash
-    minor_version   : 0
-    compatible_brands: iso6avc1mp41
-    creation_time   : 2018-05-07T22:23:31.000000Z
-  Duration: 00:10:50.65, start: 0.000000, bitrate: 1957 kb/s
-    Stream #0:0(und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1920x1080 [SAR 1:1 DAR 16:9], 7 kb/s, 23.98 fps, 23.98 tbr, 90k tbn, 47.95 tbc (default)
-    Metadata:
-      creation_time   : 2018-05-07T22:23:31.000000Z
-      handler_name    : VideoHandler
-Stream mapping:
-  Stream #0:0 -> #0:0 (h264 (native) -> hevc (libx265))
-Press [q] to stop, [?] for help
-[h264 @ 0000026b785fc100] mmco: unref short failure
-x265 [info]: HEVC encoder version 3.4+2-73ca1d7be377
-x265 [info]: build info [Windows][GCC 9.3.1][64 bit] 8bit+10bit
-x265 [info]: using cpu capabilities: MMX2 SSE2Fast LZCNT SSSE3 SSE4.2 AVX FMA3 BMI2 AVX2
-x265 [info]: Main profile, Level-2.1 (Main tier)
-x265 [info]: Thread pool created using 8 threads
-x265 [info]: Slices                              : 1
-x265 [info]: frame threads / pool features       : 3 / wpp(6 rows)
-x265 [warning]: Source height < 720p; disabling lookahead-slices
-x265 [info]: Coding QT: max CU size, min CU size : 64 / 8
-x265 [info]: Residual QT: max TU size, max depth : 32 / 1 inter / 1 intra
-x265 [info]: ME / range / subpel / merge         : hex / 57 / 2 / 3
-x265 [info]: Lookahead / bframes / badapt        : 20 / 4 / 2
-x265 [info]: b-pyramid / weightp / weightb       : 1 / 1 / 0
-x265 [info]: References / ref-limit  cu / depth  : 3 / off / on
-x265 [info]: AQ: mode / str / qg-size / cu-tree  : 2 / 1.0 / 32 / 1
-x265 [info]: Rate Control / qCompress            : CRF-26.0 / 0.60
-x265 [info]: VBV/HRD buffer / max-rate / init    : 2200 / 1650 / 0.900
-x265 [info]: tools: rd=3 early-skip rskip mode=1 signhide tmvp b-intra
-x265 [info]: tools: strong-intra-smoothing deblock sao
-Output #0, mp4, to 'clip_47_360.mp4':
-  Metadata:
-    major_brand     : dash
-    minor_version   : 0
-    compatible_brands: iso6avc1mp41
-    encoder         : Lavf58.47.100
-    Stream #0:0(und): Video: hevc (libx265) (hvc1 / 0x31637668), yuv420p(bt709/bt709/unknown), 640x360 [SAR 1:1 DAR 16:9], q=-1--1, 23.98 fps, 24k tbn, 23.98 tbc (default)
-    Metadata:
-      creation_time   : 2018-05-07T22:23:31.000000Z
-      handler_name    : VideoHandler
-      encoder         : Lavc58.93.100 libx265
-    Side data:
-      cpb: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: N/A
-frame=   31 fps=0.0 q=28.0 size=       0kB time=-00:00:00.04 bitrate=N/A speed=N/A    frame=   44 fps= 41 q=33.8 size=       0kB time=00:00:00.50 bitrate=   0.7kbits/s speed=0.471x    frame=   61 fps= 39 q=29.7 size=     256kB time=00:00:01.20 bitrate=1734.1kbits/s speed=0.771x    frame=   79 fps= 38 q=33.9 size=     256kB time=00:00:01.96 bitrate=1070.0kbits/s speed=0.934x    frame=   97 fps= 37 q=27.2 size=     512kB time=00:00:02.71 bitrate=1547.2kbits/s speed=1.04x    frame=  120 fps= 38 q=34.7 size=     768kB time=00:00:03.67 bitrate=1714.2kbits/s speed=1.17x    frame=  138 fps= 38 q=27.7 size=    1024kB time=00:00:04.42 bitrate=1897.5kbits/s speed=1.21x    frame=  163 fps= 39 q=30.3 size=    1024kB time=00:00:05.46 bitrate=1535.4kbits/s speed= 1.3x    frame=  181 fps= 38 q=32.8 size=    1280kB time=00:00:06.21 bitrate=1687.3kbits/s speed=1.32x    frame=  200 fps= 38 q=37.0 size=    1536kB time=00:00:07.00 bitrate=1795.8kbits/s speed=1.34x    frame=  216 fps= 38 q=34.9 size=    1536kB time=00:00:07.67 bitrate=1639.6kbits/s speed=1.34x    frame=  229 fps= 36 q=35.2 size=    1536kB time=00:00:08.21 bitrate=1531.4kbits/s speed= 1.3x    frame=  246 fps= 36 q=35.9 size=    1792kB time=00:00:08.92 bitrate=1644.7kbits/s speed=1.31x    frame=  264 fps= 36 q=34.5 size=    2048kB time=00:00:09.67 bitrate=1733.9kbits/s speed=1.32x    frame=  282 fps= 36 q=29.4 size=    2048kB time=00:00:10.42 bitrate=1609.0kbits/s speed=1.33x    frame=  307 fps= 37 q=33.7 size=    2304kB time=00:00:11.46 bitrate=1645.6kbits/s speed=1.37x    frame=  329 fps= 37 q=33.6 size=    2304kB time=00:00:12.38 bitrate=1523.7kbits/s speed= 1.4x    frame=  356 fps= 38 q=32.6 size=    2560kB time=00:00:13.51 bitrate=1551.9kbits/s speed=1.44x    frame=  380 fps= 38 q=24.9 size=    2560kB time=00:00:14.51 bitrate=1444.9kbits/s speed=1.47x    frame=  402 fps= 39 q=26.5 size=    2816kB time=00:00:15.43 bitrate=1494.9kbits/s speed=1.49x    frame=  408 fps= 37 q=34.0 Lsize=    3066kB time=00:00:16.89 bitrate=1486.7kbits/s speed=1.55x    
-video:3057kB audio:0kB subtitle:0kB other streams:0kB global headers:2kB muxing overhead: 0.273360%
-x265 [info]: frame I:      9, Avg QP:26.66  kb/s: 6685.86   SSIM Mean: 0.967299 (14.854dB)
-x265 [info]: frame P:    110, Avg QP:28.25  kb/s: 3539.68   SSIM Mean: 0.940098 (12.226dB)
-x265 [info]: frame B:    289, Avg QP:33.77  kb/s: 521.24    SSIM Mean: 0.904135 (10.183dB)
-x265 [info]: Weighted P-Frames: Y:37.3% UV:28.2%
-x265 [info]: consecutive B-frames: 13.4% 8.4% 10.1% 58.0% 10.1% 
-
-encoded 408 frames in 10.87s (37.53 fps), 1471.02 kb/s, Avg QP:32.12, SSIM Mean Y: 0.9152243 (10.717 dB)
