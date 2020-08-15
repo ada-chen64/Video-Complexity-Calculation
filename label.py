@@ -1,6 +1,7 @@
 import os
 import re
 import numpy as np
+import torch
 from pred import performance
 
 
@@ -35,7 +36,7 @@ for clip in clips:
         
         if not os.path.exists(tar):
             os.system(cmd)
-        print(tar)
+            print(tar)
         
         file = open(out)
         lines = file.readlines()
@@ -44,7 +45,7 @@ for clip in clips:
         ssims.append(ssim)
         file.close()
     
-    print(ssims)
+    # print(ssims)
     for i, ssim in enumerate(ssims):
         if ssim > 0.970:
             labels.append(i)
@@ -53,7 +54,8 @@ for clip in clips:
         labels.append(9)
 
 
-print(labels)
 preds = np.loadtxt('output.txt', dtype=np.str, delimiter=',')
-preds = preds[1].astype(int)
+preds = preds[:, 1].astype(int)
+preds = torch.LongTensor(preds)
+labels = torch.LongTensor(labels)
 performance(preds, labels, clips)

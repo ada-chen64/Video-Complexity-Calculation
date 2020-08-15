@@ -53,7 +53,9 @@ def performance(preds, labels, clips):
     # get preds and labels
     preds = torch.squeeze(preds)
     lables = torch.squeeze(labels)
+    print('preds:')
     print(preds)
+    print('labels:')
     print(labels)
 
     # statistics
@@ -70,7 +72,7 @@ def performance(preds, labels, clips):
     print()
 
     print('Bad samples:')
-    worse = torch.nonzero(diff > 1)
+    worse = torch.nonzero(diff > 1, as_tuple=False)
     for w in worse:
         print('[%3d] %s:\tlabel %d\tpred %d\tdiff %d' % (w, clips[w], labels[w], preds[w], diff[w]))
     print()
