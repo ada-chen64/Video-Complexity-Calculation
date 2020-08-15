@@ -23,6 +23,7 @@ pip3 install opencv-python -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 
 
+
 ## 运行
 
 将需要检测复杂度的场景clip.mp4放入clips文件夹中，并在clips.txt内添加文件名即可。
@@ -30,6 +31,18 @@ pip3 install opencv-python -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```shell
 python main.py > output.txt
 ```
+
+
+
+## 统计
+
+比较预测值与标签值的准确率、均方根误差等等
+
+```
+python label.py
+```
+
+
 
 
 
@@ -42,6 +55,18 @@ python main.py > output.txt
 * clip.py 场景压缩至360p
 * feat.py 提取特征，数据归一化
 * pred.py 预测复杂度
+* train.py 训练模型
+* label.py 统计预测值准确率等
+
+### 360p
+
+* clips 压缩后视频
+* output 压缩信息
+
+### 720p
+
+* clips 固定码率视频
+* output 固定码率信息
 
 ### data
 
