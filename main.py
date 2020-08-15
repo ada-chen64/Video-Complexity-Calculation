@@ -21,6 +21,7 @@ for clip in clips:
 
     # step2: extract features
     data = extract_feature(base)
+    np.savetxt('data/test_data.txt', data, fmt='%.6f')
 
     # step3: normalize data
     data = normalize_data(data, norm)
