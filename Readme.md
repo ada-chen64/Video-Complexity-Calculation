@@ -10,7 +10,6 @@
 * cv2
 * numpy
 * pandas
-* sklearn
 * pytorch
 
 注意配置环境的时候有以下两点问题：
@@ -26,7 +25,7 @@ pip3 install opencv-python -i https://pypi.tuna.tsinghua.edu.cn/simple
 
 ## 运行
 
-将需要检测复杂度的场景clip.mp4放入clips文件夹中，并在clips.txt内添加文件名即可。
+在根目录外的input.txt中添加视频的绝对路径即可。
 
 ```shell
 python main.py > output.txt
@@ -44,49 +43,35 @@ python label.py
 
 
 
-
-
 ## 目录
 
 ### code
 
-* clips.txt 提供场景名
+* ../input.txt 视频绝对路径
 * main.py 整体框架
 * clip.py 场景压缩至360p
 * feat.py 提取特征，数据归一化
 * pred.py 预测复杂度
 * train.py 训练模型
 * label.py 统计预测值准确率等
+* output.txt 绝对路径、复杂度、码率、SSIM、20维特征
 
 ### 360p
 
-* clips 压缩后视频
-* output 压缩信息
+* clips crf模式压缩后视频
+* output crf模式压缩信息
 
 ### 720p
 
-* clips 固定码率视频
-* output 固定码率信息
+* clips 固定码率压缩视频
+* output 固定码率压缩信息
 
 ### data
 
 * norm.npy 提供归一化数据（最大值、最小值）
+* train_data.txt 训练集数据：包括第一列label和后面的20维特征
+* test_data.txt 测试集数据：包括20维特征（注意这里的测试集是我们组的84个clip）
 
 ### model
 
 * net.pkl 保存模型数据
-
-### delete
-
-* 之前大家所提供的各种.py和.csv文件，暂时可以不再需要了
-* 其中的pre.py里包括了整合.csv并转为.npy文件的方式
-
-
-
-## 补充
-
-对于训练集data矩阵，其中第0列为label，后续为features
-
-对于测试集data矩阵，由于未提供label，因此全部为features
-
-如果测试集能够提供label，可以读取后调用pred.py中的performance函数，获取测试集结果的准确率和均方根误差值，以及表现不佳的测试样例。
