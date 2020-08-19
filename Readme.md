@@ -56,6 +56,11 @@ python label.py
 * label.py 统计预测值准确率等
 * output.txt 绝对路径、复杂度、码率、SSIM、20维特征
 
+### related
+
+* 所有相关资料，包括分割的场景、bitrate-ssim曲线、MSU调研报告、最终答辩展示和报告等
+* 详见文件夹中的readme
+
 ### 360p
 
 * clips crf模式压缩后视频
