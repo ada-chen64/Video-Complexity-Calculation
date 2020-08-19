@@ -207,5 +207,5 @@ def lap_space(path):
 
     res1 = pd.Series(res1)
     res2 = pd.Series(res2)
-    return [res1.mean(), res1.std(ddof=0), res1.max(), res1.median(), res1.min(), \
-            res2.mean(), res2.std(ddof=0), res2.max(), res2.median(), res2.min()]
+    return [res1.mean(), res1.std(ddof=0), res1.max(), res1.min(), res1.median(), \
+            res2.mean(), res2.std(ddof=0), res2.max(), res2.min(), res2.median()]
